@@ -1,0 +1,67 @@
+name: retirement_management_system
+description: A new Flutter project.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.1.0-83.0.dev <4.0.0'
+
+
+dependencies:
+  flutter:
+
+    sdk: flutter
+  another_flushbar: ^1.10.29
+  another_transformer_page_view: ^2.0.0
+  cupertino_icons: ^1.0.2
+  hexcolor: ^3.0.1
+  font_awesome_flutter: ^10.4.0
+  otp_text_field: ^1.1.1
+  intl_phone_number_input: ^0.7.2
+  phone_numbers_parser: ^7.0.0+1
+  webview_flutter: ^4.2.1
+  provider: ^6.0.5
+  firebase_auth: ^4.6.1
+  firebase_database: ^10.1.2
+  cloud_firestore: ^4.6.0
+  firebase_core: ^2.13.0
+  firebase_storage: ^11.2.1
+  path: ^1.8.3
+  http: ^0.13.6
+  path_provider: ^2.0.15
+  quiver: ^3.0.1
+  sign_in_button: ^3.0.0
+  google_sign_in: ^6.1.2
+  flutter_facebook_auth: ^5.0.11
+  url_launcher: ^6.1.11
+  charts_flutter: ^0.12.0
+  image_picker: ^0.8.7+5
+  firebase_messaging: ^14.6.1
+  flutter_local_notifications: ^14.1.0
+  intl: ^0.17.0
+  meta: ^1.9.1
+
+
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^2.0.0
+
+flutter:
+
+
+  uses-material-design: true
+
+
+  assets:
+    - assets/
+
+
+
+
+
+
