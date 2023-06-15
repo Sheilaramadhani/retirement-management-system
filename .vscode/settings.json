@@ -1,0 +1,32 @@
+{
+    "terminal.integrated.shellIntegration.suggestEnabled": true,
+    "cSpell.words": [
+        "aboutus",
+        "adminsdk",
+        "advisorname",
+        "advisorstate",
+        "Armis",
+        "Bodyy",
+        "Cpkw",
+        "cupertino",
+        "currentincome",
+        "datab",
+        "Dont",
+        "emailcontroller",
+        "firestore",
+        "firstnamecontroller",
+        "flushbar",
+        "hexcolor",
+        "lastnamecontroller",
+        "Logiin",
+        "LTRB",
+        "optionscreen",
+        "passwordcontroller",
+        "pensioncalculate",
+        "phonenumbercontroller",
+        "requestpage",
+        "retirementage",
+        "retirementagecontroller",
+        "retirementgoal"
+    ]
+}

@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58959430568",
+    "firebase_url": "https://retirement-management-system-default-rtdb.firebaseio.com",
+    "project_id": "retirement-management-system",
+    "storage_bucket": "retirement-management-system.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58959430568:android:c1e32699446731b1ced39d",
+        "android_client_info": {
+          "package_name": "com.example.retirement_management_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58959430568-ikm30akfhla09p3229l9vrm9nvb66cfd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpkwAFui0PciVorZ9zOpENs3i-mVsLGK4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58959430568-ikm30akfhla09p3229l9vrm9nvb66cfd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
