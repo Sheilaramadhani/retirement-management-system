@@ -9,6 +9,7 @@ class ExpenseApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Expense Management',
       theme: ThemeData(
         primarySwatch: Colors.orange,

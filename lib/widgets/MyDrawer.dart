@@ -176,7 +176,7 @@ class MyDrawer extends StatelessWidget {
                                             context,
                                             MaterialPageRoute(
                                                 builder: (context) =>
-                                                    InvestingOptionsScreen()));
+                                                    InvestmentFirmListPage()));
                                       },
                                               style: TextStyle(
                             fontSize:15 , color: Colors.black),
