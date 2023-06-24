@@ -1,6 +1,6 @@
 # retirement_management_system
 
-A new Flutter project.
+A Project that will be used with all people who need to plan their future
 
 ## Getting Started
 
