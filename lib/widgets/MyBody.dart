@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, file_names
+// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/financial/reg2.dart';
@@ -23,15 +23,15 @@ class MyBody extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Image.asset('assets/RMS.png', height: 100),
-                ),
+                // Padding(
+                //   padding: const EdgeInsets.all(20.0),
+                //   child: Image.asset('assets/RMS.png', height: 100),
+                // ),
                 Text(
                   'RETIREMENT MANAGEMENT SYSTEM',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
@@ -42,7 +42,7 @@ class MyBody extends StatelessWidget {
                   textAlign: TextAlign.center,
                   softWrap: true,
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Colors.black,
                     fontSize: 15,
                   ),
                 ),

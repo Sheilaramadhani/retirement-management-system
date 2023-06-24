@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api
+// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 
@@ -20,7 +20,7 @@ class _RetirementPlanPageState extends State<RetirementPlanPage> {
         backgroundColor: Colors.orange,
         title: Text('Retirement Plan'),
       ),
-           body: SingleChildScrollView(
+      body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
@@ -42,8 +42,7 @@ class _RetirementPlanPageState extends State<RetirementPlanPage> {
                 },
               ),
               TextField(
-                decoration:
-                    InputDecoration(labelText: 'Desired Retirement Age'),
+                decoration: InputDecoration(labelText: 'Desired Retirement Age'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   desiredRetirementAge = int.parse(value);
@@ -57,8 +56,7 @@ class _RetirementPlanPageState extends State<RetirementPlanPage> {
                 },
               ),
               TextField(
-                decoration:
-                    InputDecoration(labelText: 'Expected Monthly Expenses'),
+                decoration: InputDecoration(labelText: 'Expected Monthly Expenses'),
                 keyboardType: TextInputType.number,
                 onChanged: (value) {
                   expectedMonthlyExpenses = double.parse(value);
@@ -66,6 +64,9 @@ class _RetirementPlanPageState extends State<RetirementPlanPage> {
               ),
               SizedBox(height: 20),
               ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                ),
                 onPressed: () {
                   final retirementPlan = RetirementPlan(
                     currentAge: currentAge,
@@ -77,7 +78,8 @@ class _RetirementPlanPageState extends State<RetirementPlanPage> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => RetirementPlanResultPage(
-                          retirementPlan: retirementPlan),
+                        retirementPlan: retirementPlan,
+                      ),
                     ),
                   );
                 },
@@ -105,10 +107,29 @@ class RetirementPlan {
   });
 }
 
-class RetirementPlanResultPage extends StatelessWidget {
+class RetirementPlanResultPage extends StatefulWidget {
   final RetirementPlan retirementPlan;
 
   RetirementPlanResultPage({required this.retirementPlan});
+
+  @override
+  _RetirementPlanResultPageState createState() => _RetirementPlanResultPageState();
+}
+
+class _RetirementPlanResultPageState extends State<RetirementPlanResultPage> {
+  late int remainingYears;
+  late double remainingAmount;
+
+  @override
+  void initState() {
+    super.initState();
+    calculateRemainingYearsAndAmount();
+  }
+
+  void calculateRemainingYearsAndAmount() {
+    remainingYears = widget.retirementPlan.desiredRetirementAge - widget.retirementPlan.currentAge;
+    remainingAmount = widget.retirementPlan.income - (widget.retirementPlan.expectedMonthlyExpenses * 12 * remainingYears);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -129,19 +150,11 @@ class RetirementPlanResultPage extends StatelessWidget {
             ),
             SizedBox(height: 20),
             Text(
-              'Current Age: ${retirementPlan.currentAge}',
+              'Remaining Years until Retirement: $remainingYears',
               style: TextStyle(fontSize: 18),
             ),
             Text(
-              'Desired Retirement Age: ${retirementPlan.desiredRetirementAge}',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              'Income: \$${retirementPlan.income.toStringAsFixed(2)}',
-              style: TextStyle(fontSize: 18),
-            ),
-            Text(
-              'Expected Monthly Expenses: \$${retirementPlan.expectedMonthlyExpenses.toStringAsFixed(2)}',
+              'Remaining Amount: \$${remainingAmount.toStringAsFixed(2)}',
               style: TextStyle(fontSize: 18),
             ),
           ],

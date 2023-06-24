@@ -1,4 +1,4 @@
-// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors, prefer_const_constructors_in_immutables, sized_box_for_whitespace
+// ignore_for_file: use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -18,10 +18,12 @@ class ExpenseApp extends StatelessWidget {
     );
   }
 }
+
 class ExpenseHomePage extends StatefulWidget {
   @override
   _ExpenseHomePageState createState() => _ExpenseHomePageState();
 }
+
 class _ExpenseHomePageState extends State<ExpenseHomePage> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final TextEditingController _titleController = TextEditingController();
@@ -68,8 +70,7 @@ class _ExpenseHomePageState extends State<ExpenseHomePage> {
         ),
         title: Text('Expense Management'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
+      body: Column(
         children: [
           ExpenseForm(
             titleController: _titleController,
@@ -77,7 +78,10 @@ class _ExpenseHomePageState extends State<ExpenseHomePage> {
             addExpense: _addExpense,
           ),
           Expanded(
-            child: ExpenseList(firestore: _firestore, removeExpense: _removeExpense),
+            child: ExpenseList(
+              firestore: _firestore,
+              removeExpense: _removeExpense,
+            ),
           ),
           TotalExpense(firestore: _firestore),
           ElevatedButton(
@@ -86,14 +90,14 @@ class _ExpenseHomePageState extends State<ExpenseHomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => WeeklyExpensePage(firestore: _firestore),
+                  builder: (context) =>
+                      WeeklyExpensePage(firestore: _firestore),
                 ),
               );
             },
           ),
         ],
       ),
-      )
     );
   }
 }
@@ -279,9 +283,13 @@ class _WeeklyExpensePageState extends State<WeeklyExpensePage> {
 
       final List<ExpenseData> chartDataList = [];
 
-      expenseMap.forEach((date, amount) {
-        chartDataList.add(ExpenseData(date: date, amount: amount));
-      });
+      for (var entry in expenseMap.entries) {
+        final DateTime date = formatter.parse(entry.key);
+        final double amount = entry.value;
+
+        final ExpenseData expenseData = ExpenseData(date, amount);
+        chartDataList.add(expenseData);
+      }
 
       setState(() {
         chartData = chartDataList;
@@ -295,51 +303,40 @@ class _WeeklyExpensePageState extends State<WeeklyExpensePage> {
       appBar: AppBar(
         title: Text('Weekly Expense Report'),
       ),
-      body: Center(
-        child: chartData.isNotEmpty
-            ? ExpenseChart(data: chartData)
-            : Text('No expense data available for the past week.'),
+      body: Column(
+        children: [
+          SizedBox(height: 20.0),
+          Text(
+            'Weekly Expense Chart',
+            style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+          ),
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              child: charts.TimeSeriesChart(
+                [
+                  charts.Series<ExpenseData, DateTime>(
+                    id: 'Expense',
+                    colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
+                    domainFn: (ExpenseData data, _) => data.date,
+                    measureFn: (ExpenseData data, _) => data.amount,
+                    data: chartData,
+                  ),
+                ],
+                animate: true,
+                dateTimeFactory: const charts.LocalDateTimeFactory(),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
 }
 
 class ExpenseData {
-  final String date;
+  final DateTime date;
   final double amount;
 
-  ExpenseData({
-    required this.date,
-    required this.amount,
-  });
-}
-
-class ExpenseChart extends StatelessWidget {
-  final List<ExpenseData> data;
-
-  ExpenseChart({
-    required this.data,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    List<charts.Series<ExpenseData, String>> series = [
-      charts.Series(
-        id: 'Expense',
-        data: data,
-        domainFn: (ExpenseData expense, _) => expense.date,
-        measureFn: (ExpenseData expense, _) => expense.amount,
-        colorFn: (_, __) => charts.MaterialPalette.blue.shadeDefault,
-      ),
-    ];
-
-    return charts.BarChart(
-      series,
-      animate: true,
-      vertical: false,
-      barRendererDecorator: charts.BarLabelDecorator<String>(),
-      domainAxis: charts.OrdinalAxisSpec(renderSpec: charts.NoneRenderSpec()),
-      primaryMeasureAxis: charts.NumericAxisSpec(renderSpec: charts.NoneRenderSpec()),
-    );
-  }
+  ExpenseData(this.date, this.amount);
 }
