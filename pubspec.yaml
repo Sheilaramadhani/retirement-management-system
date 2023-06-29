@@ -46,6 +46,7 @@ dependencies:
   web_socket_channel: ^2.4.0
   rate_my_app: ^2.0.0
   syncfusion_flutter_charts: ^21.2.4
+  excel: ^2.1.0
   # in_app_review: ^2.0.6
   # share_plus: ^7.0.2
   # shared_preferences: ^2.1.2
