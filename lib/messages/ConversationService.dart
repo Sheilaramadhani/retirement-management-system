@@ -1,8 +1,26 @@
 // ignore_for_file: file_names
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:retirement_management_system/messages/coservation.dart';
-import 'package:retirement_management_system/messages/message.dart';
+
+class Message {
+  final String senderId;
+  final String content;
+  final DateTime timestamp;
+
+  Message({
+    required this.senderId,
+    required this.content,
+    required this.timestamp,
+  });
+}
+
+class Conversation {
+  final String id;
+  final List<String> participantIds;
+  final List<Message> messages;
+
+  Conversation({required this.id, required this.participantIds, required this.messages});
+}
 
 class ConversationService {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;

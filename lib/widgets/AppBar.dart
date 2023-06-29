@@ -15,8 +15,7 @@ class MyAppBar extends StatelessWidget {
     iconTheme: IconThemeData(
     color: Colors.black, // Set the color of the menu icon to black
   ),
-      title: Row(
-        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      title: Row(        // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
       onTap: () { },

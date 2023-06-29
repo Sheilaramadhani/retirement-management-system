@@ -1,7 +1,9 @@
-// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, unused_element, avoid_print, empty_statements
+// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, unused_element, avoid_print, empty_statements, use_build_context_synchronously
 
 import 'package:flutter/material.dart';
 // import 'package:retirement_management_system/data/service_rating.dart';
+import 'package:retirement_management_system/messages/ConversationScreen.dart';
+import 'package:retirement_management_system/messages/ConversationService.dart';
 import 'package:retirement_management_system/widgets/AppBarUser.dart';
 import 'package:retirement_management_system/pages/body.dart';
 import 'package:retirement_management_system/widgets/MyDrawer.dart';
@@ -14,6 +16,8 @@ class HomePageUser extends StatefulWidget {
 }
 
 class _HomePageUserState extends State<HomePageUser> {
+   final ConversationService _conversationService = ConversationService();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +27,32 @@ class _HomePageUserState extends State<HomePageUser> {
         child: AppBarUser(),
       ),
       body: MyBodyUser(),
-       
+            floatingActionButton: SizedBox(
+        width: 120,
+        height: 48,
+        child: FloatingActionButton(
+          onPressed: () async {
+            // Create a new conversation
+            final conversationId = await _conversationService.createConversation(['userId1', 'userId2']);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => ConversationScreen(conversationId: conversationId),
+              ),
+            );
+          },
+          shape: RoundedRectangleBorder(
+            side: BorderSide(color: Colors.black),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          backgroundColor: Colors.orange,
+          child: const Text('Chat with us'),
+        ),
+        )       
         );
       }
   }
               
-              // child: Icon(Icons.star),
-            
-          // : null,
 
 
 

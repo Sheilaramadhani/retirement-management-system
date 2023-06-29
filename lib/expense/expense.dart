@@ -130,7 +130,7 @@ class ExpenseForm extends StatelessWidget {
               ),
               TextField(
                 controller: amountController,
-                decoration: InputDecoration(labelText: 'Amount'),
+                decoration: InputDecoration(labelText: 'Amount (Tshs)'),
                 keyboardType: TextInputType.number,
               ),
               ElevatedButton(
@@ -181,7 +181,7 @@ class ExpenseList extends StatelessWidget {
             return ListTile(
               title: Text(expense['title']),
               subtitle: Text(
-                'Amount: \$${expense['amount']}',
+                'Amount: Tshs ${expense['amount'].toStringAsFixed(2)}',
               ),
               trailing: IconButton(
                 icon: Icon(Icons.delete),
@@ -222,7 +222,7 @@ class TotalExpense extends StatelessWidget {
           padding: EdgeInsets.all(10.0),
           alignment: Alignment.centerRight,
           child: Text(
-            'Total Expense: \$${totalExpense.toStringAsFixed(2)}',
+            'Total Expense: Tshs ${totalExpense.toStringAsFixed(2)}',
             style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
           ),
         );

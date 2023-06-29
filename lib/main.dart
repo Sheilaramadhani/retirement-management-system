@@ -21,5 +21,5 @@ void main() async {
     // ),
   );
 
-  runApp(const Rms());
+  runApp(Rms());
 }

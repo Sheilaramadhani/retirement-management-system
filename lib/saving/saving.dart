@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, library_private_types_in_public_api, unused_local_variable
+// ignore_for_file: prefer_const_constructors, unused_local_variable, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 
@@ -97,7 +97,7 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
               controller: goalController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: 'Goal Amount',
+                labelText: 'Goal Amount (Tshs)',
               ),
             ),
             SizedBox(height: 16.0),
@@ -105,7 +105,7 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
               controller: monthlyContributionController,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                labelText: 'Monthly Contribution',
+                labelText: 'Monthly Contribution (Tshs)',
               ),
             ),
             SizedBox(height: 16.0),
@@ -140,7 +140,7 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
             SizedBox(height: 16.0),
             if (advisedMonthlyContribution > 0)
               Text(
-                'To meet your goal amount, add $advisedMonthlyContribution per month.',
+                'To meet your goal amount, add ${advisedMonthlyContribution.toStringAsFixed(2)} Tshs per month.',
                 style: TextStyle(fontSize: 18.0),
               ),
             if (suggestedDuration > 0)

@@ -3,7 +3,6 @@
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/options/retirementplan.dart';
 
-
 class MonthsServedCalculator extends StatefulWidget {
   @override
   _MonthsServedCalculatorState createState() => _MonthsServedCalculatorState();
@@ -30,13 +29,14 @@ class _MonthsServedCalculatorState extends State<MonthsServedCalculator> {
   }
 
   void calculatePensions() {
-    if (monthsServed<180){
+    if (monthsServed < 180) {
       monthlyPension = (1 / 580) * monthsServed * ape * (1 / 12) * 0.67;
       commutedPension = 0;
       fullPension = 0;
     }
     if (isVoluntary) {
-      commutedPension = (1 / 580) * monthsServed * ape * 12.5 *  0.33; // Voluntary retirement when the age is 55
+      commutedPension =
+          (1 / 580) * monthsServed * ape * 12.5 * 0.33; // Voluntary retirement when the age is 55
       fullPension = 0;
       monthlyPension = 0;
     } else {
@@ -54,11 +54,9 @@ class _MonthsServedCalculatorState extends State<MonthsServedCalculator> {
         backgroundColor: Colors.orange,
         title: Text('Know Your Pension'),
       ),
-        body: SingleChildScrollView(
-          padding: EdgeInsets.all(10.0),
+      body: SingleChildScrollView(
+        padding: EdgeInsets.all(10.0),
         child: Column(
-        
-        // child: Column(
           children: [
             TextField(
               keyboardType: TextInputType.number,
@@ -167,15 +165,15 @@ class _MonthsServedCalculatorState extends State<MonthsServedCalculator> {
                   DataCell(Text('$monthsServed')),
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('Full Pension')),
+                  DataCell(Text('Full Pension (Tshs)')),
                   DataCell(Text('$fullPension')),
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('Commuted Pension')),
+                  DataCell(Text('Commuted Pension (Tshs)')),
                   DataCell(Text('$commutedPension')),
                 ]),
                 DataRow(cells: [
-                  DataCell(Text('Monthly Pension')),
+                  DataCell(Text('Monthly Pension (Tshs)')),
                   DataCell(Text('$monthlyPension')),
                 ]),
               ],
@@ -190,7 +188,9 @@ class _MonthsServedCalculatorState extends State<MonthsServedCalculator> {
                 // Navigate to the investment options page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => RetirementPlanPage()),
+                  MaterialPageRoute(
+                    builder: (context) => RetirementPlanPage(),
+                  ),
                 );
               },
               child: Text('Explore The Best Investment Options'),

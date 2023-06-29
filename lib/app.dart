@@ -1,15 +1,17 @@
+// ignore_for_file: use_key_in_widget_constructors, prefer_const_constructors_in_immutables
+
 import 'package:flutter/material.dart';
-import 'package:retirement_management_system/pages/home.dart';
+import 'package:retirement_management_system/pages/splash_screen.dart';
 
 class Rms extends StatelessWidget {
-  const Rms({super.key});
+  Rms({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'RMS',
-      home: HomePage(),
+      home: SplashScreen(),
     );
   }
 }

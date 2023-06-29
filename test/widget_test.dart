@@ -14,7 +14,7 @@ import 'package:retirement_management_system/app.dart';
 void main() {
   testWidgets('Counter increments smoke test', (WidgetTester tester) async {
     // Build our app and trigger a frame.
-    await tester.pumpWidget(const Rms());
+    await tester.pumpWidget(Rms());
 
     // Verify that our counter starts at 0.
     expect(find.text('0'), findsOneWidget);

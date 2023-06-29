@@ -2,7 +2,18 @@
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:retirement_management_system/messages/message.dart';
+
+class Message {
+  final String senderId;
+  final String content;
+  final DateTime timestamp;
+
+  Message({
+    required this.senderId,
+    required this.content,
+    required this.timestamp,
+  });
+}
 
 class ConversationScreen extends StatefulWidget {
   final String conversationId;
@@ -43,7 +54,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
                       final message = messages[index].data() as Map<String, dynamic>;
                       final senderId = message['senderId'];
                       final content = message['content'];
-
                       return ListTile(
                         title: Text(content),
                         subtitle: Text('Sent by $senderId'),
@@ -78,7 +88,6 @@ class _ConversationScreenState extends State<ConversationScreen> {
                         content: messageContent,
                         timestamp: DateTime.now(),
                       );
-
                       _firestore
                           .collection('conversations')
                           .doc(widget.conversationId)
@@ -88,16 +97,11 @@ class _ConversationScreenState extends State<ConversationScreen> {
                         'content': newMessage.content,
                         'timestamp': newMessage.timestamp,
                       });
-
                       _messageController.clear();
                     }
                   },
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+                ),],    ),
+          ),     ],  ),
     );
   }
 }
