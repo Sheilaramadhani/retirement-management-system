@@ -20,13 +20,13 @@ class AppBarUser extends StatelessWidget {
         // mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           GestureDetector(
-       onTap: () {
+      onTap: () {
                 Navigator.push(
-                   context,
-                 MaterialPageRoute(
-               builder: (context) =>
+                  context,
+                MaterialPageRoute(
+              builder: (context) =>
                 HomePage()));
-       },
+      },
         child: Image.asset('assets/rms.png', height: 220,width: 100,
           ),
           ),
@@ -41,13 +41,13 @@ class AppBarUser extends StatelessWidget {
       titleSpacing: 20,
       toolbarHeight: 65,
       backgroundColor: Colors.orange,
-           actions: [
+          actions: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed:() => {
                   Navigator.push(
-               context,
+              context,
               MaterialPageRoute(builder: (context) => GoalTrackerScreen()),
             )
               },

@@ -17,6 +17,7 @@
         "firstnamecontroller",
         "flushbar",
         "hexcolor",
+        "investmentcalculator",
         "lastnamecontroller",
         "Logiin",
         "LTRB",
@@ -27,6 +28,7 @@
         "requestpage",
         "retirementage",
         "retirementagecontroller",
-        "retirementgoal"
+        "retirementgoal",
+        "Tshs"
     ]
 }

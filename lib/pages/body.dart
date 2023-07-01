@@ -1,9 +1,13 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors, file_names, sort_child_properties_last
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
-import 'package:retirement_management_system/financial/reg2.dart';
+import 'package:retirement_management_system/calculate/investmentcalculator.dart';
+import 'package:retirement_management_system/expense/expense.dart';
+import 'package:retirement_management_system/pages/advisory.dart';
 import 'package:retirement_management_system/pages/investing.dart';
-import 'package:retirement_management_system/pages/login_page.dart';
+import 'package:retirement_management_system/saving/goal.dart';
+import 'package:retirement_management_system/saving/loan.dart';
+import 'package:retirement_management_system/saving/saving.dart';
 
 class MyBodyUser extends StatelessWidget {
   const MyBodyUser({Key? key}) : super(key: key);
@@ -11,208 +15,168 @@ class MyBodyUser extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          SizedBox(
-            height: 350,
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
+      child: Container( // Wrap the Column with a Container
+        width: MediaQuery.of(context).size.width, // Set the width to the screen's width
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
             ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'RETIREMENT MANAGEMENT SYSTEM',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 25,
+            Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'RETIREMENT MANAGEMENT SYSTEM',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25,
+                    ),
                   ),
-                ),
-                SizedBox(height: 30),
-                Text(
-                  'Your Tomorrow is Today',
-                  textAlign: TextAlign.center,
-                  softWrap: true,
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
+                  SizedBox(height: 30),
+                  Text(
+                    'Your Tomorrow is Today',
+                    textAlign: TextAlign.center,
+                    softWrap: true,
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 15,
+                    ),
                   ),
-                ),
-              ],
-            ),
-          ),
-          SizedBox(
-            height: 45,
-          ),
-          Center(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                ],
               ),
-              onPressed: () {
-                // Navigate to the investment options page
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => InvestmentFirmListPage()),
-                );
-              },
-              child: Text('View The Best Investment Options'),
             ),
-          ),
-          SizedBox(
-            height: 45,
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('SAVING MANAGEMENT'),
-                    ),
-                    SizedBox(width: 16.0),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('EXPENSES MANAGEMENT'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('GOAL MANAGEMENT'),
-                    ),
-                    SizedBox(width: 16.0),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('INVESTMENT CALCULATOR'),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 16.0),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('LOAN MANAGEMENT'),
-                    ),
-                    SizedBox(width: 16.0),
-                    ElevatedButton(
-                      style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
-                      },
-                      child: Text('FINANCIAL ADVISORS'),
-                    ),
-                  ],
-                ),
-              ],
+            SizedBox(
+              height: 45,
             ),
-          ),
-          SizedBox(
-            height: 45,
-          ),
-          Center(
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
-              ),
-              onPressed: () {
-                showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return AlertDialog(
-                      title: Text('Are you a customer or advisor?'),
-                      actions: [
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LoginPage()),
-                            );
-                          },
-                          child: Text('Customer'),
+            SizedBox(
+              height: 45,
+            ),
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                         ),
-                        TextButton(
-                          onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => LogiinPage()),
-                            );
-                          },
-                          child: Text('Advisor'),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => SavingsPlanManagementPage()),
+                          );
+                        },
+                        child: Text('SAVING MANAGEMENT'),
+                      ),
+                      SizedBox(width: 16.0),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                         ),
-                      ],
-                    );
-                  },
-                );
-              },
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(40, 10, 40, 10),
-                child: Text(
-                  'GET STARTED',
-                ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ExpenseApp()),
+                          );
+                        },
+                        child: Text('EXPENSES MANAGEMENT'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => GoalTrackerScreen()),
+                          );
+                        },
+                        child: Text('GOAL MANAGEMENT'),
+                      ),
+                      SizedBox(width: 16.0),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => MonthlyInvestmentCalculator()),
+                          );
+                        },
+                        child: Text('INVESTMENTCALCULATOR'),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 16.0),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => LoanManagementApp()),
+                          );
+                        },
+                        child: Text('LOAN MANAGEMENT'),
+                      ),
+                      SizedBox(width: 16.0),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AdvisorPage()),
+                          );
+                        },
+                        child: Text('FINANCIAL ADVISORS'),
+                      ),
+                    ],
+                  ),
+                ],
               ),
             ),
-          ),
-        ],
+            SizedBox(
+              height: 45,
+            ),
+            Center(
+              child: ElevatedButton(
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                ),
+                onPressed: () {
+                  // Navigate to the investment options page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => InvestmentFirmListPage()),
+                  );
+                },
+                child: Text('View The Best Investment Options'),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

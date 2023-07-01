@@ -44,7 +44,7 @@ void initState() {
             fontWeight: FontWeight.bold,
           ),
           messageStyle: TextStyle(
-            color: Colors.orange, // Change to orange color
+            color: Colors.black, // Change to orange color
             fontSize: 16,
           ),
           contentPadding: EdgeInsets.symmetric(horizontal: 24, vertical: 16),

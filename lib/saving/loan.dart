@@ -1,18 +1,18 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api, use_build_context_synchronously
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Loan {
-  final String id;
-  final String description;
+  String id;
+  String description;
   double amount;
   bool isPaid;
 
   Loan({
     required this.id,
     required this.description,
-    required this.amount,
+    this.amount = 0.0,
     this.isPaid = false,
   });
 
@@ -64,7 +64,7 @@ class LoanList extends StatelessWidget {
 
   LoanList({required this.loanCollection});
 
-  void toggleLoanPayment(String id, bool newValue) async {
+  Future<void> toggleLoanPayment(String id, bool newValue) async {
     await loanCollection.doc(id).update({'isPaid': newValue});
   }
 
@@ -162,7 +162,12 @@ class _AddLoanScreenState extends State<AddLoanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+          leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () => Navigator.pop(context),
+        ),
         title: Text('Add Loan'),
+        backgroundColor: Colors.orange,
       ),
       body: Padding(
         padding: EdgeInsets.all(16.0),

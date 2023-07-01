@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api, unnecessary_new, prefer_const_literals_to_create_immutables, sort_child_properties_last
+// ignore_for_file: sort_child_properties_last, prefer_const_constructors, prefer_const_literals_to_create_immutables, unnecessary_new, library_private_types_in_public_api, prefer_const_constructors_in_immutables
 
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -23,9 +23,9 @@ class _SplashScreenState extends State<SplashScreen> {
       });
     });
 
-    new Timer(Duration(milliseconds: 10), () {
+    new Timer(Duration(milliseconds: 50), () {
       setState(() {
-        _isVisible = true; // Now it is showing fade effect and navigating to Login page
+        _isVisible = true;
       });
     });
   }
@@ -36,8 +36,8 @@ class _SplashScreenState extends State<SplashScreen> {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            Theme.of(context).colorScheme.secondary,
-            Theme.of(context).primaryColor,
+            Colors.orange, // Change this to your desired background color
+            Colors.orangeAccent, // Change this to your desired background color
           ],
           begin: const FractionalOffset(0, 0),
           end: const FractionalOffset(1.0, 0.0),

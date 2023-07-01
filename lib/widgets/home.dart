@@ -16,7 +16,7 @@ class HomePageUser extends StatefulWidget {
 }
 
 class _HomePageUserState extends State<HomePageUser> {
-   final ConversationService _conversationService = ConversationService();
+  final ConversationService _conversationService = ConversationService();
 
   @override
   Widget build(BuildContext context) {
@@ -48,11 +48,11 @@ class _HomePageUserState extends State<HomePageUser> {
           backgroundColor: Colors.orange,
           child: const Text('Chat with us'),
         ),
-        )       
+        )
         );
       }
   }
-              
+
 
 
 
