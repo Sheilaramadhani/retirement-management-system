@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/pages/login_page.dart';
+import 'package:retirement_management_system/financial/reg2.dart';
 
 
 class MyAppBar extends StatelessWidget {
@@ -38,10 +39,46 @@ class MyAppBar extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: IconButton(
               onPressed:() => {
-                  Navigator.push(
-               context,
-              MaterialPageRoute(builder: (context) => LoginPage()),
-            )
+                showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      title: Text('Are you a customer or advisor?'),
+                      actions: [
+                        TextButton(
+                          style: ButtonStyle(
+                            textStyle: MaterialStateProperty.all<TextStyle>(
+                              TextStyle(color: Colors.orange),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoginPage()),
+                            );
+                          },
+                          child: Text('Customer',
+                          style: TextStyle(color: Colors.orange,),),
+                        ),
+                        TextButton(
+                          style: ButtonStyle(
+                            textStyle: MaterialStateProperty.all<TextStyle>(
+                              TextStyle(color: Colors.orange),
+                            ),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LogiinPage()),
+                            );
+                          },
+                          child: Text('Advisor',
+                          style: TextStyle(color: Colors.orange,),),
+                        ),
+                      ],
+                    );
+                  },
+                )
               },
               icon: const Icon(
                 Icons.person_2_outlined,

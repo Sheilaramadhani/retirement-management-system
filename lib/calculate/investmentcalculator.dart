@@ -46,6 +46,7 @@ class _MonthlyInvestmentCalculatorState
     return Scaffold(
       appBar: AppBar(
         title: Text('Monthly Investment Calculator'),
+        backgroundColor: Colors.orange,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.all(16.0),
@@ -63,7 +64,7 @@ class _MonthlyInvestmentCalculatorState
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 10.0),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -75,7 +76,7 @@ class _MonthlyInvestmentCalculatorState
                 });
               },
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 10.0),
             TextField(
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
@@ -89,10 +90,13 @@ class _MonthlyInvestmentCalculatorState
             ),
             SizedBox(height: 16.0),
             ElevatedButton(
+              style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      ),
               onPressed: calculateInvestment,
               child: Text('Calculate'),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 20.0),
             Text(
               'Total Investment: ${formatAmount(totalInvestment)}',
               style: TextStyle(fontWeight: FontWeight.bold),
@@ -107,7 +111,7 @@ class _MonthlyInvestmentCalculatorState
               'Final Amount: ${formatAmount(finalAmount)}',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 16.0),
+            SizedBox(height: 25.0),
             Text(
               'Investment History',
               style: TextStyle(
@@ -115,49 +119,48 @@ class _MonthlyInvestmentCalculatorState
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0),
-            StreamBuilder<QuerySnapshot>(
-              stream: FirebaseFirestore.instance
-                  .collection('investments')
-                  .snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final investments = snapshot.data!.docs;
-                  return DataTable(
-                    columns: [
-                      DataColumn(label: Text('Monthly Investment')),
-                      DataColumn(label: Text('Expected Annual Return')),
-                      DataColumn(label: Text('Period (Years)')),
-                      DataColumn(label: Text('Total Investment')),
-                      DataColumn(label: Text('Total Returns')),
-                      DataColumn(label: Text('Final Amount')),
-                    ],
-                    rows: investments.map((investment) {
-                      final monthlyInvestment =
-                          investment['monthlyInvestment'];
-                      final expectedAnnualReturn =
-                          investment['expectedAnnualReturn'];
-                      final periodYears = investment['periodYears'];
-                      final totalInvestment = investment['totalInvestment'];
-                      final totalReturns = investment['totalReturns'];
-                      final finalAmount = investment['finalAmount'];
-                      return DataRow(
-                        cells: [
-                          DataCell(Text(formatAmount(monthlyInvestment))),
-                          DataCell(Text(expectedAnnualReturn.toString())),
-                          DataCell(Text(periodYears.toString())),
-                          DataCell(Text(formatAmount(totalInvestment))),
-                          DataCell(Text(formatAmount(totalReturns))),
-                          DataCell(Text(formatAmount(finalAmount))),
-                        ],
-                      );
-                    }).toList(),
-                  );
-                } else {
-                  return CircularProgressIndicator();
-                }
-              },
-            ),
+            SizedBox(height: 15.0),
+StreamBuilder<QuerySnapshot>(
+  stream: FirebaseFirestore.instance.collection('investments').snapshots(),
+  builder: (context, snapshot) {
+    if (snapshot.hasData) {
+      final investments = snapshot.data!.docs;
+      return SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: DataTable(
+          columns: [
+            DataColumn(label: Text('Monthly Investment')),
+            DataColumn(label: Text('Expected Annual Return')),
+            DataColumn(label: Text('Period (Years)')),
+            DataColumn(label: Text('Total Investment')),
+            DataColumn(label: Text('Total Returns')),
+            DataColumn(label: Text('Final Amount')),
+          ],
+          rows: investments.map((investment) {
+            final monthlyInvestment = investment['monthlyInvestment'];
+            final expectedAnnualReturn = investment['expectedAnnualReturn'];
+            final periodYears = investment['periodYears'];
+            final totalInvestment = investment['totalInvestment'];
+            final totalReturns = investment['totalReturns'];
+            final finalAmount = investment['finalAmount'];
+            return DataRow(
+              cells: [
+                DataCell(Text(formatAmount(monthlyInvestment))),
+                DataCell(Text(expectedAnnualReturn.toString())),
+                DataCell(Text(periodYears.toString())),
+                DataCell(Text(formatAmount(totalInvestment))),
+                DataCell(Text(formatAmount(totalReturns))),
+                DataCell(Text(formatAmount(finalAmount))),
+              ],
+            );
+          }).toList(),
+        ),
+      );
+    } else {
+      return CircularProgressIndicator();
+    }
+  },
+),
           ],
         ),
       ),

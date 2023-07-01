@@ -8,15 +8,18 @@
         "Armis",
         "Bodyy",
         "Cpkw",
+        "CRDB",
         "cupertino",
         "currentincome",
         "datab",
         "Dont",
         "emailcontroller",
+        "Exim",
         "firestore",
         "firstnamecontroller",
         "flushbar",
         "hexcolor",
+        "investmentcalculator",
         "lastnamecontroller",
         "Logiin",
         "LTRB",
@@ -27,6 +30,8 @@
         "requestpage",
         "retirementage",
         "retirementagecontroller",
-        "retirementgoal"
+        "retirementgoal",
+        "Stanbic",
+        "Tshs"
     ]
 }

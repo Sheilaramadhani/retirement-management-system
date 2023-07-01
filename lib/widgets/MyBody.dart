@@ -14,7 +14,7 @@ class MyBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 350,
+            height: 10,
           ),
           Container(
             decoration: BoxDecoration(
@@ -235,7 +235,7 @@ class MyBody extends StatelessWidget {
                         TextButton(
                           style: ButtonStyle(
                             textStyle: MaterialStateProperty.all<TextStyle>(
-                              TextStyle(color: Colors.orange),
+                              TextStyle(color: Colors.black),
                             ),
                           ),
                           onPressed: () {
@@ -244,7 +244,8 @@ class MyBody extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => LoginPage()),
                             );
                           },
-                          child: Text('Customer'),
+                          child: Text('Customer',
+                          style: TextStyle(color: Colors.orange,),),
                         ),
                         TextButton(
                           style: ButtonStyle(
@@ -258,7 +259,8 @@ class MyBody extends StatelessWidget {
                               MaterialPageRoute(builder: (context) => LogiinPage()),
                             );
                           },
-                          child: Text('Advisor'),
+                          child: Text('Advisor',
+                          style: TextStyle(color: Colors.orange,),),
                         ),
                       ],
                     );
