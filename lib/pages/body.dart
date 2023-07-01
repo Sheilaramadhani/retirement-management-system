@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, sized_box_for_whitespace
+// ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/calculate/investmentcalculator.dart';
@@ -65,30 +65,34 @@ class MyBodyUser extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => SavingsPlanManagementPage()),
+                            );
+                          },
+                          child: Text('SAVING MANAGEMENT'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => SavingsPlanManagementPage()),
-                          );
-                        },
-                        child: Text('SAVING MANAGEMENT'),
                       ),
                       SizedBox(width: 16.0),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ExpenseApp()),
+                            );
+                          },
+                          child: Text('EXPENSES MANAGEMENT'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => ExpenseApp()),
-                          );
-                        },
-                        child: Text('EXPENSES MANAGEMENT'),
                       ),
                     ],
                   ),
@@ -96,30 +100,34 @@ class MyBodyUser extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => GoalTrackerScreen()),
+                            );
+                          },
+                          child: Text('GOAL MANAGEMENT'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => GoalTrackerScreen()),
-                          );
-                        },
-                        child: Text('GOAL MANAGEMENT'),
                       ),
                       SizedBox(width: 16.0),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => MonthlyInvestmentCalculator()),
+                            );
+                          },
+                          child: Text('INVESTMENT CALCULATOR'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => MonthlyInvestmentCalculator()),
-                          );
-                        },
-                        child: Text('INVESTMENTCALCULATOR'),
                       ),
                     ],
                   ),
@@ -127,30 +135,34 @@ class MyBodyUser extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => LoanManagementApp()),
+                            );
+                          },
+                          child: Text('LOAN MANAGEMENT'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => LoanManagementApp()),
-                          );
-                        },
-                        child: Text('LOAN MANAGEMENT'),
                       ),
                       SizedBox(width: 16.0),
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                      Expanded( // Use Expanded to make buttons have equal sizes
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                          ),
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => AdvisorPage()),
+                            );
+                          },
+                          child: Text('FINANCIAL ADVISORS'),
                         ),
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AdvisorPage()),
-                          );
-                        },
-                        child: Text('FINANCIAL ADVISORS'),
                       ),
                     ],
                   ),
