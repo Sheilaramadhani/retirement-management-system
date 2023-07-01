@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, sized_box_for_whitespace
 
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/calculate/investmentcalculator.dart';
@@ -29,6 +29,7 @@ class MyBodyUser extends StatelessWidget {
               ),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
+                // ignore: prefer_const_literals_to_create_immutables
                 children: [
                   Text(
                     'RETIREMENT MANAGEMENT SYSTEM',

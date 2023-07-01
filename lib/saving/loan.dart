@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, use_key_in_widget_constructors, library_private_types_in_public_api, prefer_const_constructors_in_immutables
+// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, use_key_in_widget_constructors, prefer_const_constructors_in_immutables, library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -15,6 +15,16 @@ class Loan {
     this.amount = 0.0,
     this.isPaid = false,
   });
+
+  factory Loan.fromFirestore(DocumentSnapshot doc) {
+    Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
+    return Loan(
+      id: data['id'] ?? '',
+      description: data['description'] ?? '',
+      amount: (data['amount'] ?? 0.0).toDouble(),
+      isPaid: data['isPaid'] ?? false,
+    );
+  }
 
   Map<String, dynamic> toMap() {
     return {
@@ -81,15 +91,7 @@ class LoanList extends StatelessWidget {
           return CircularProgressIndicator();
         }
 
-        List<Loan> loans = snapshot.data!.docs.map((doc) {
-          Map<String, dynamic> data = doc.data() as Map<String, dynamic>;
-          return Loan(
-            id: data['id'],
-            description: data['description'],
-            amount: data['amount'],
-            isPaid: data['isPaid'],
-          );
-        }).toList();
+        List<Loan> loans = snapshot.data!.docs.map((doc) => Loan.fromFirestore(doc)).toList();
 
         return ListView.builder(
           itemCount: loans.length,
@@ -162,7 +164,7 @@ class _AddLoanScreenState extends State<AddLoanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          leading: IconButton(
+        leading: IconButton(
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
