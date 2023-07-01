@@ -11,13 +11,10 @@ class InvestmentFirm {
   //  this.icon
   );
 }
-
-
 class InvestmentFirmListPage extends StatefulWidget {
   @override
   _InvestmentFirmListPageState createState() => _InvestmentFirmListPageState();
 }
-
 class _InvestmentFirmListPageState extends State<InvestmentFirmListPage> {
   List<InvestmentFirm> firms = [
   InvestmentFirm('Amana Bank', 'https://www.amanabank.co.tz/'),
@@ -67,17 +64,13 @@ class _InvestmentFirmListPageState extends State<InvestmentFirmListPage> {
   InvestmentFirm('Yetu Microfinance Bank', 'https://www.yetumfb.co.tz/'),
   InvestmentFirm('Zan Securities', 'https://www.zansec.com/'),
 ];
-
-
   List<InvestmentFirm> filteredFirms = [];
-
   @override
   void initState() {
     super.initState();
     firms.sort((a, b) => a.name.compareTo(b.name));
     filteredFirms = List.from(firms);
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -1,74 +1,127 @@
-// ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, library_private_types_in_public_api
+// ignore_for_file: avoid_print
 
+import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:excel/excel.dart';
 import 'package:flutter/material.dart';
 
-class ApeCalculator extends StatefulWidget {
-  @override
-  _ApeCalculatorState createState() => _ApeCalculatorState();
-}
+class CalculateAPE {
+  final String filePath =
+      'C:\\Users\\SASHA\\Documents\\GitHub\\retirement-management-system\\retirementdata.xlsx';
+  final String sheetName = 'retirementdata';
+  final int yearColumnIndex = 0; // Replace '0' with the actual column index where the years are located
+  final int valueColumnIndex = 1; // Replace '1' with the actual column index where the values are located
+  final String nameColumn = 'Name';
+  final _formKey = GlobalKey<FormState>();
+  final _emailController = TextEditingController();
+  final _passwordController = TextEditingController();
+  final _auth = FirebaseAuth.instance;
 
-class _ApeCalculatorState extends State<ApeCalculator> {
-  List<double> monthlyEarnings = [];
-  double ape = 0;
+  Future<void> processAPECalculation() async {
+    if (_formKey.currentState!.validate()) {
+      try {
+        final email = _emailController.text.trim();
+        final password = _passwordController.text.trim();
+        final users = await _auth.signInWithEmailAndPassword(
+          email: email,
+          password: password,
+        );
 
-  void calculateAPE() {
-    double totalEarnings = 0;
+        if (users.user != null) {
+          String currentUsername = users.user!.email ?? '';
 
-    for (var earnings in monthlyEarnings) {
-      totalEarnings += earnings;
+          bool validUsername =
+              isUsernameValid(filePath, sheetName, nameColumn, currentUsername);
+
+          if (validUsername) {
+            final List<int> topYears = findTopYearsForUsername(
+                filePath, sheetName, nameColumn, currentUsername, 3);
+            final double ape =
+                calculateAPEForYears(filePath, sheetName, topYears);
+
+            print('Username: $currentUsername');
+            print('The top 3 years with the highest contributions are: $topYears');
+            print('APE (Average of three years\' contributions with the highest values): $ape');
+          } else {
+            print('Valid username not found. No access granted.');
+          }
+        } else {
+          print('User login failed.');
+        }
+      } catch (e) {
+        print('Error: $e');
+      }
     }
-
-    setState(() {
-      ape = totalEarnings / monthlyEarnings.length;
-    });
   }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('APE Calculator'),
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text(
-              'Enter Monthly Earnings',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-            SizedBox(height: 16),
-            TextField(
-              keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Earnings',
-              ),
-              onChanged: (value) {
-                setState(() {
-                  monthlyEarnings.add(double.tryParse(value) ?? 0);
-                });
-              },
-            ),
-            SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: calculateAPE,
-              child: Text('Calculate APE'),
-            ),
-            SizedBox(height: 16),
-            Text(
-              'APE: $ape',
-              style: TextStyle(
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+  bool isUsernameValid(
+      String filePath, String sheetName, String nameColumn, String username) {
+    final bytes = File(filePath).readAsBytesSync();
+    final excel = Excel.decodeBytes(bytes);
+
+    final sheet = excel.tables[sheetName]; // Access the table directly
+
+    final headersRow = sheet!.rows[0];
+    int nameIndex = headersRow.indexWhere((cell) => cell?.value == nameColumn);
+    if (nameIndex == -1) {
+      print('Column $nameColumn not found in the Excel sheet.');
+      return false;
+    }
+    for (var row in sheet.rows) {
+      final name = row[nameIndex]?.value;
+      if (name == username) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  double calculateAPEForYears(
+      String filePath, String sheetName, List<int> years) {
+    final bytes = File(filePath).readAsBytesSync();
+    final excel = Excel.decodeBytes(bytes);
+    final sheet = excel.tables[sheetName]; // Access the table directly
+    double totalValue = 0;
+    for (var row in sheet!.rows) {
+      final year = row[yearColumnIndex]?.value;
+      final value = row[valueColumnIndex]?.value;
+      if (year != null && value != null && years.contains(year)) {
+        totalValue += value;
+      }
+    }
+    return totalValue / years.length;
+  }
+
+  List<int> findTopYearsForUsername(
+      String filePath, String sheetName, String nameColumn, String username, int numYears) {
+    final bytes = File(filePath).readAsBytesSync();
+    final excel = Excel.decodeBytes(bytes);
+    final sheet = excel.tables[sheetName]; // Access the table directly
+    final Map<int, double> yearsMap = {};
+    final headersRow = sheet!.rows[0];
+    int nameIndex = headersRow.indexWhere((cell) => cell?.value == nameColumn);
+    if (nameIndex == -1) {
+      print('Column $nameColumn not found in the Excel sheet.');
+      return [];
+    }
+    for (var row in sheet.rows) {
+      final name = row[nameIndex]?.value;
+      if (name == username) {
+        final year = row[yearColumnIndex]?.value;
+        final value = row[valueColumnIndex]?.value;
+        if (year != null && value != null) {
+          yearsMap[year] = value;
+        }
+      }
+    }
+    final sortedYears = yearsMap.keys.toList()
+      ..sort((a, b) => yearsMap[b]!.compareTo(yearsMap[a]!));
+
+    return sortedYears.take(numYears).toList();
   }
 }
 
+void main() {
+  CalculateAPE apeCalculator = CalculateAPE();
+  apeCalculator.processAPECalculation();
+}
