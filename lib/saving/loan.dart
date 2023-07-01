@@ -43,87 +43,38 @@ class LoanManagementApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Loan Management App',
       home: Scaffold(
         appBar: AppBar(
+          backgroundColor: Colors.orange,
           title: Text('Loan Management'),
         ),
-        body: LoanList(
-          loanCollection: loanCollection,
-        ),
-        floatingActionButton: FloatingActionButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => AddLoanScreen(
-                  loanCollection: loanCollection,
-                ),
-              ),
-            );
-          },
-          child: Icon(Icons.add),
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            AddLoanForm(loanCollection: loanCollection),
+            SizedBox(height: 16.0),
+            Expanded(
+              child: LoanList(loanCollection: loanCollection),
+            ),
+          ],
         ),
       ),
     );
   }
 }
 
-class LoanList extends StatelessWidget {
+class AddLoanForm extends StatefulWidget {
   final CollectionReference loanCollection;
 
-  LoanList({required this.loanCollection});
-
-  Future<void> toggleLoanPayment(String id, bool newValue) async {
-    await loanCollection.doc(id).update({'isPaid': newValue});
-  }
+  AddLoanForm({required this.loanCollection});
 
   @override
-  Widget build(BuildContext context) {
-    return StreamBuilder<QuerySnapshot>(
-      stream: loanCollection.snapshots(),
-      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
-        if (snapshot.hasError) {
-          return Text('Error: ${snapshot.error}');
-        }
-
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return CircularProgressIndicator();
-        }
-
-        List<Loan> loans = snapshot.data!.docs.map((doc) => Loan.fromFirestore(doc)).toList();
-
-        return ListView.builder(
-          itemCount: loans.length,
-          itemBuilder: (BuildContext context, int index) {
-            Loan loan = loans[index];
-            return ListTile(
-              title: Text(loan.description),
-              subtitle: Text('Amount: Tshs ${loan.amount.toStringAsFixed(2)}'),
-              trailing: Checkbox(
-                value: loan.isPaid,
-                onChanged: (bool? value) {
-                  toggleLoanPayment(loan.id, value ?? false);
-                },
-              ),
-            );
-          },
-        );
-      },
-    );
-  }
+  _AddLoanFormState createState() => _AddLoanFormState();
 }
 
-class AddLoanScreen extends StatefulWidget {
-  final CollectionReference loanCollection;
-
-  AddLoanScreen({required this.loanCollection});
-
-  @override
-  _AddLoanScreenState createState() => _AddLoanScreenState();
-}
-
-class _AddLoanScreenState extends State<AddLoanScreen> {
+class _AddLoanFormState extends State<AddLoanForm> {
   final _formKey = GlobalKey<FormState>();
   late TextEditingController _descriptionController;
   late TextEditingController _amountController;
@@ -155,61 +106,108 @@ class _AddLoanScreenState extends State<AddLoanScreen> {
       );
 
       await widget.loanCollection.doc(id).set(newLoan.toMap());
-
-      Navigator.pop(context);
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Navigator.pop(context),
-        ),
-        title: Text('Add Loan'),
-        backgroundColor: Colors.orange,
-      ),
-      body: Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                controller: _descriptionController,
-                decoration: InputDecoration(labelText: 'Description'),
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter a description';
-                  }
-                  return null;
-                },
+    return Padding(
+      padding: EdgeInsets.all(16.0),
+      child: Form(
+        key: _formKey,
+        child: Column(
+          children: [
+            TextFormField(
+              controller: _descriptionController,
+              decoration: InputDecoration(labelText: 'Description'),
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter a description';
+                }
+                return null;
+              },
+            ),
+            TextFormField(
+              controller: _amountController,
+              decoration: InputDecoration(labelText: 'Amount'),
+              keyboardType: TextInputType.number,
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  return 'Please enter an amount';
+                }
+                if (double.tryParse(value) == null) {
+                  return 'Invalid amount';
+                }
+                return null;
+              },
+            ),
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(
+                  Colors.orange,
+                ),
               ),
-              TextFormField(
-                controller: _amountController,
-                decoration: InputDecoration(labelText: 'Amount'),
-                keyboardType: TextInputType.number,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Please enter an amount';
-                  }
-                  if (double.tryParse(value) == null) {
-                    return 'Invalid amount';
-                  }
-                  return null;
-                },
-              ),
-              SizedBox(height: 16.0),
-              ElevatedButton(
-                onPressed: addLoan,
-                child: Text('Add Loan'),
-              ),
-            ],
-          ),
+              onPressed: addLoan,
+              child: Text('Add Loan'),
+            ),
+          ],
         ),
       ),
+    );
+  }
+}
+
+class LoanList extends StatelessWidget {
+  final CollectionReference loanCollection;
+
+  LoanList({required this.loanCollection});
+
+  Future<void> toggleLoanPayment(String id, bool newValue) async {
+    await loanCollection.doc(id).update({'isPaid': newValue});
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: loanCollection.snapshots(),
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Text('Error: ${snapshot.error}');
+        }
+
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return CircularProgressIndicator();
+        }
+
+        List<Loan> loans = snapshot.data!.docs.map((doc) => Loan.fromFirestore(doc)).toList();
+
+        if (loans.isEmpty) {
+          return Center(
+            child: Text(
+              'You don\'t have any loans yet.',
+              style: TextStyle(fontSize: 18),
+            ),
+          );
+        }
+
+        return ListView.builder(
+          itemCount: loans.length,
+          itemBuilder: (BuildContext context, int index) {
+            Loan loan = loans[index];
+            return ListTile(
+              title: Text(loan.description),
+              subtitle: Text('Amount: Tshs ${loan.amount.toStringAsFixed(2)}'),
+              trailing: Checkbox(
+                value: loan.isPaid,
+                onChanged: (bool? value) {
+                  toggleLoanPayment(loan.id, value ?? false);
+                },
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
