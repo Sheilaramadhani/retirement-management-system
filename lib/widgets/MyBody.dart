@@ -6,7 +6,7 @@ import 'package:retirement_management_system/pages/investing.dart';
 import 'package:retirement_management_system/pages/login_page.dart';
 
 class MyBody extends StatelessWidget {
-  const MyBody ({Key? key}) : super(key: key);
+  const MyBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +50,15 @@ class MyBody extends StatelessWidget {
           Center(
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange),
               ),
               onPressed: () {
                 // Navigate to the investment options page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => InvestmentFirmListPage()),
+                  MaterialPageRoute(
+                      builder: (context) => InvestmentFirmListPage()),
                 );
               },
               child: Text('View The Best Investment Options'),
@@ -70,7 +72,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'This feature assists you in planning and monitoring your savings. You can set savings goals, track your progress, and allocate funds to different savings categories. It helps you establish a savings strategy and provides visibility into your savings journey.',
+                      'This feature aids in saving planning, and allocation of funds for a comprehensive strategy',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -79,7 +81,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -95,7 +98,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'With this feature, you can efficiently manage your expenses and track your spending. It enables you to categorize your expenses, set budgets, and record your transactions. By analyzing your expenses, you can gain insights into your spending habits and make informed financial decisions.',
+                      ' Effectively manage expenses, track spending, set budgets, analyze habits, and make informed decisions.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -104,7 +107,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -120,7 +124,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'This feature focuses on managing your financial goals effectively. You can define your short-term and long-term goals, such as buying a house, saving for retirement, or funding education. The goal management feature helps you set milestones, track your progress, and make adjustments to your financial plans as needed.',
+                      ' simplifies financial goals, milestone setting, progress tracking, and adjustments.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -129,7 +133,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -145,7 +150,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'This tool helps you calculate the wealth gain and expected returns for your monthly investment. You can get a rough estimate of the maturity amount for any monthly investment plan, based on a projected annual return rate and Period (Years).',
+                      'This tool calculates monthly investment returns and wealth gain, estimating maturity based on projected annual rates and periods.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -154,7 +159,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -170,7 +176,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'This feature helps you track and manage your loans effectively. It allows you to input details of your loans, such as the principal amount, interest rate, and loan term. You can monitor your loan progress, calculate repayment schedules, and stay organized with your loan payments.',
+                      'This feature streamlines loan tracking and management by enabling input of loan details, monitoring progress, calculating repayment schedules, and maintaining organization.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -179,7 +185,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -195,7 +202,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'You deserve investing advice from a true partner. From your first investment through retirement, we are with you the whole way, providing the best financial advisors at an affordable price.',
+                      'Trust our financial advisors for reliable,investment and retirement advice with affodable price.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -204,7 +211,8 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -223,7 +231,8 @@ class MyBody extends StatelessWidget {
           Center(
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Colors.orange),
               ),
               onPressed: () {
                 showDialog(
@@ -241,11 +250,16 @@ class MyBody extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => LoginPage()),
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
                             );
                           },
-                          child: Text('Customer',
-                          style: TextStyle(color: Colors.orange,),),
+                          child: Text(
+                            'Customer',
+                            style: TextStyle(
+                              color: Colors.orange,
+                            ),
+                          ),
                         ),
                         TextButton(
                           style: ButtonStyle(
@@ -256,11 +270,16 @@ class MyBody extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => LogiinPage()),
+                              MaterialPageRoute(
+                                  builder: (context) => LogiinPage()),
                             );
                           },
-                          child: Text('Advisor',
-                          style: TextStyle(color: Colors.orange,),),
+                          child: Text(
+                            'Advisor',
+                            style: TextStyle(
+                              color: Colors.orange,
+                            ),
+                          ),
                         ),
                       ],
                     );
