@@ -141,7 +141,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      ' simplifies financial goals, milestone setting, progress tracking, and adjustments.',
+                      'This simplifies financial goals, milestone setting, progress tracking, and adjustments.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
