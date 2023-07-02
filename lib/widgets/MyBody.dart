@@ -64,7 +64,7 @@ class MyBody extends StatelessWidget {
                 children: [
                   Text('View The Best Investment Options'),
                   SizedBox(width: 8), // Adjust spacing between text and image
-                  Image.asset('assets/investment_icon.png', height: 24, width: 24),
+                  Image.asset('assets/investment_icon.jpg', height: 24, width: 24),
                 ],
               ),
             ),
@@ -99,7 +99,7 @@ class MyBody extends StatelessWidget {
                         children: [
                           Text('SAVING MANAGEMENT'),
                           SizedBox(width: 8),
-                          Image.asset('assets/saving_icon.png', height: 24, width: 24),
+                          Image.asset('assets/saving_icon.jpg', height: 24, width: 24),
                         ],
                       ),
                     ),
@@ -131,7 +131,7 @@ class MyBody extends StatelessWidget {
                         children: [
                           Text('EXPENSES MANAGEMENT'),
                           SizedBox(width: 8),
-                          Image.asset('assets/expenses_icon.png', height: 24, width: 24),
+                          Image.asset('assets/expenses_icon.jpg', height: 24, width: 24),
                         ],
                       ),
                     ),
@@ -163,7 +163,7 @@ class MyBody extends StatelessWidget {
                         children: [
                           Text('GOAL MANAGEMENT'),
                           SizedBox(width: 8),
-                          Image.asset('assets/goal_icon.png', height: 24, width: 24),
+                          Image.asset('assets/goal_icon.jpg', height: 24, width: 24),
                         ],
                       ),
                     ),
@@ -227,7 +227,7 @@ class MyBody extends StatelessWidget {
                         children: [
                           Text('LOAN MANAGEMENT'),
                           SizedBox(width: 8),
-                          Image.asset('assets/loan_icon.png', height: 24, width: 24),
+                          Image.asset('assets/loan_icon.jpg', height: 24, width: 24),
                         ],
                       ),
                     ),
@@ -259,7 +259,7 @@ class MyBody extends StatelessWidget {
                         children: [
                           Text('FINANCIAL ADVISORS'),
                           SizedBox(width: 8),
-                          Image.asset('assets/advisor_icon.png', height: 24, width: 24),
+                          Image.asset('assets/advisor_icon.jpg', height: 24, width: 24),
                         ],
                       ),
                     ),
