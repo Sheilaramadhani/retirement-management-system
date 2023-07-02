@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables, file_names
+// ignore_for_file: prefer_const_constructors, file_names, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 import 'package:retirement_management_system/financial/reg2.dart';
@@ -50,18 +50,23 @@ class MyBody extends StatelessWidget {
           Center(
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.orange),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
               ),
               onPressed: () {
                 // Navigate to the investment options page
                 Navigator.push(
                   context,
-                  MaterialPageRoute(
-                      builder: (context) => InvestmentFirmListPage()),
+                  MaterialPageRoute(builder: (context) => InvestmentFirmListPage()),
                 );
               },
-              child: Text('View The Best Investment Options'),
+              child: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('View The Best Investment Options'),
+                  SizedBox(width: 8), // Adjust spacing between text and image
+                  Image.asset('assets/investment_icon.png', height: 24, width: 24),
+                ],
+              ),
             ),
           ),
           SizedBox(height: 45),
@@ -81,8 +86,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -90,7 +94,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('SAVING MANAGEMENT'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('SAVING MANAGEMENT'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/saving_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -107,8 +118,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -116,7 +126,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('EXPENSES MANAGEMENT'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('EXPENSES MANAGEMENT'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/expenses_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -133,8 +150,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -142,7 +158,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('GOAL MANAGEMENT'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('GOAL MANAGEMENT'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/goal_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -159,8 +182,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -168,7 +190,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('INVESTMENT CALCULATOR'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('INVESTMENT CALCULATOR'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/investment_calculator_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -185,8 +214,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -194,7 +222,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('LOAN MANAGEMENT'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('LOAN MANAGEMENT'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/loan_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -202,7 +237,7 @@ class MyBody extends StatelessWidget {
                 Column(
                   children: [
                     Text(
-                      'Trust our financial advisors for reliable,investment and retirement advice with affodable price.',
+                      'Trust our financial advisors for reliable,investment and retirement advice with affordable price.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         color: Colors.black,
@@ -211,8 +246,7 @@ class MyBody extends StatelessWidget {
                     ),
                     ElevatedButton(
                       style: ButtonStyle(
-                        backgroundColor:
-                            MaterialStateProperty.all<Color>(Colors.orange),
+                        backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
                       ),
                       onPressed: () {
                         Navigator.push(
@@ -220,7 +254,14 @@ class MyBody extends StatelessWidget {
                           MaterialPageRoute(builder: (context) => LoginPage()),
                         );
                       },
-                      child: Text('FINANCIAL ADVISORS'),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text('FINANCIAL ADVISORS'),
+                          SizedBox(width: 8),
+                          Image.asset('assets/advisor_icon.png', height: 24, width: 24),
+                        ],
+                      ),
                     ),
                   ],
                 ),
@@ -231,8 +272,7 @@ class MyBody extends StatelessWidget {
           Center(
             child: ElevatedButton(
               style: ButtonStyle(
-                backgroundColor:
-                    MaterialStateProperty.all<Color>(Colors.orange),
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.orange),
               ),
               onPressed: () {
                 showDialog(
@@ -250,8 +290,7 @@ class MyBody extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => LoginPage()),
+                              MaterialPageRoute(builder: (context) => LoginPage()),
                             );
                           },
                           child: Text(
@@ -270,8 +309,7 @@ class MyBody extends StatelessWidget {
                           onPressed: () {
                             Navigator.push(
                               context,
-                              MaterialPageRoute(
-                                  builder: (context) => LogiinPage()),
+                              MaterialPageRoute(builder: (context) => LogiinPage()),
                             );
                           },
                           child: Text(
