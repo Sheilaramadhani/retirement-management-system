@@ -1,11 +1,15 @@
-// ignore_for_file: prefer_const_constructors, use_build_context_synchronously, sort_child_properties_last, use_key_in_widget_constructors, prefer_final_fields, prefer_is_not_empty
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, unused_import, use_key_in_widget_constructors, prefer_final_fields, avoid_print, use_build_context_synchronously, prefer_is_not_empty
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:mailer/mailer.dart';
+import 'package:mailer/smtp_server.dart';
 import 'package:retirement_management_system/common/theme_helper.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:retirement_management_system/pages/reg2.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:retirement_management_system/widgets/home.dart';
 
 class RegistrationPage extends StatefulWidget {
   @override
@@ -23,8 +27,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
   TextEditingController _emailcontroller = TextEditingController();
   TextEditingController _phonenumbercontroller = TextEditingController();
   TextEditingController _passwordcontroller = TextEditingController();
-
   bool _checkedValue = false;
+  bool _isPasswordVisible = false;
 
   Future<bool> isEmailAlreadyUsed(String email) async {
     final snapshot = await _firestore
@@ -33,6 +37,28 @@ class _RegistrationPageState extends State<RegistrationPage> {
         .get();
 
     return snapshot.docs.isNotEmpty;
+  }
+
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
+  }
+  Future<void> sendWelcomeEmail(String email) async {
+     final smtpServer = gmail("edwardsasha27@gmail.com", "ngegeshi2000");
+
+    final message = Message()
+     ..from = Address("edwardsasha27@gmail.com", "RetirementManagementSystem")
+      ..recipients.add(email)
+      ..subject = "Welcome to the System"
+      ..text = "Welcome to use the system! Thank you for signing up.";
+
+    try {
+      final sendReport = await send(message, smtpServer);
+      print('Message sent: ${sendReport.toString()}');
+    } on MailerException catch (e) {
+      print('Message not sent. ${e.message}');
+    }
   }
 
   @override
@@ -44,7 +70,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
           icon: Icon(Icons.arrow_back),
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text("Prepare your Life Today"),
+        title: Text("Register here"),
       ),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -123,17 +149,31 @@ class _RegistrationPageState extends State<RegistrationPage> {
                     Container(
                       child: TextFormField(
                         controller: _passwordcontroller,
-                        decoration: ThemeHelper().textInputDecoration(
-                            "Password", "Enter your password"),
-                        obscureText: true,
-                        validator: (val) {
-                          if (val!.isEmpty) {
-                            return "Please enter a password";
-                          } else if (val.length < 8) {
-                            return "Password should be at least 8 characters long";
-                          } else {
-                            return null;
+                        decoration: InputDecoration(
+                          labelText: 'Password',
+                          hintText: 'Enter your password',
+                          suffixIcon: GestureDetector(
+                            onTap: _togglePasswordVisibility,
+                            child: Icon(
+                              _isPasswordVisible
+                                  ? FontAwesomeIcons.eyeSlash
+                                  : FontAwesomeIcons.eye,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ),
+                        obscureText: !_isPasswordVisible,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return 'Please enter a password';
+                          } else if (value.length < 8) {
+                            return 'Password should be at least 8 characters long';
+                          } else if (!RegExp(
+                                  r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$')
+                              .hasMatch(value)) {
+                            return 'Password should contain at least one uppercase letter, one lowercase letter, one digit, and one special character (!@#\$&*~)';
                           }
+                          return null;
                         },
                       ),
                       decoration: ThemeHelper().inputBoxDecorationShaddow(),
@@ -199,21 +239,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 'password': _passwordcontroller.text,
                               });
 
+                               await sendWelcomeEmail(email); // Send the welcome email to the user
                               Navigator.pushReplacement(
                                 context,
                                 MaterialPageRoute(
-                                  builder: (BuildContext context) =>
-                                      Registration(),
+                                  builder: (context) => HomePageUser(),
                                 ),
                               );
                             }
                           }
                         },
                         child: Text(
-                          "Sign Up",
+                          'Sign Up',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 20,
+                            fontSize: 18,
                             fontWeight: FontWeight.bold,
                           ),
                         ),

@@ -35,7 +35,7 @@ class MyBodyUser extends StatelessWidget {
                     'RETIREMENT MANAGEMENT SYSTEM',
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.black54,
                       fontWeight: FontWeight.bold,
                       fontSize: 25,
                     ),

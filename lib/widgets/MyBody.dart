@@ -28,7 +28,7 @@ class MyBody extends StatelessWidget {
                   'RETIREMENT MANAGEMENT SYSTEM',
                   textAlign: TextAlign.center,
                   style: TextStyle(
-                    color: Colors.black,
+                    color: Colors.black54,
                     fontWeight: FontWeight.bold,
                     fontSize: 25,
                   ),
@@ -80,7 +80,7 @@ class MyBody extends StatelessWidget {
                       'This feature aids in saving planning, and allocation of funds for a comprehensive strategy',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -112,7 +112,7 @@ class MyBody extends StatelessWidget {
                       ' Effectively manage expenses, track spending, set budgets, analyze habits, and make informed decisions.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                       color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -144,7 +144,7 @@ class MyBody extends StatelessWidget {
                       'This simplifies financial goals, milestone setting, progress tracking, and adjustments.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -176,7 +176,7 @@ class MyBody extends StatelessWidget {
                       'This tool calculates monthly investment returns and wealth gain, estimating maturity based on projected annual rates and periods.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -208,7 +208,7 @@ class MyBody extends StatelessWidget {
                       'This feature streamlines loan tracking and management by enabling input of loan details, monitoring progress, calculating repayment schedules, and maintaining organization.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -240,7 +240,7 @@ class MyBody extends StatelessWidget {
                       'Trust our financial advisors for reliable,investment and retirement advice with affordable price.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.black,
+                        color: Colors.black54,
                         fontSize: 15,
                       ),
                     ),
@@ -284,7 +284,7 @@ class MyBody extends StatelessWidget {
                         TextButton(
                           style: ButtonStyle(
                             textStyle: MaterialStateProperty.all<TextStyle>(
-                              TextStyle(color: Colors.black),
+                              TextStyle(color: Colors.black54),
                             ),
                           ),
                           onPressed: () {

@@ -18,7 +18,7 @@ dependencies:
   another_transformer_page_view: ^2.0.0
   cupertino_icons: ^1.0.2
   hexcolor: ^3.0.1
-  font_awesome_flutter: ^10.4.0
+  font_awesome_flutter: ^10.5.0
   otp_text_field: ^1.1.1
   intl_phone_number_input: ^0.7.2
   phone_numbers_parser: ^7.0.0+1
@@ -47,6 +47,7 @@ dependencies:
   rate_my_app: ^2.0.0
   syncfusion_flutter_charts: ^21.2.4
   excel: ^2.1.0
+  mailer: ^6.0.1
   # in_app_review: ^2.0.6
   # share_plus: ^7.0.2
   # shared_preferences: ^2.1.2

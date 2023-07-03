@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously, prefer_const_literals_to_create_immutables, library_private_types_in_public_api
+// ignore_for_file: prefer_const_constructors, sort_child_properties_last, use_build_context_synchronously, prefer_const_literals_to_create_immutables, library_private_types_in_public_api, unused_import
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -6,8 +6,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:retirement_management_system/common/theme_helper.dart';
 import 'package:otp_text_field/otp_field.dart';
 import 'package:otp_text_field/style.dart';
+import 'package:retirement_management_system/pages/changepassword.dart';
 import 'package:retirement_management_system/pages/login_page.dart';
-
 
 class ForgotPasswordVerificationPage extends StatefulWidget {
   const ForgotPasswordVerificationPage({Key? key}) : super(key: key);
@@ -21,12 +21,12 @@ class _ForgotPasswordVerificationPageState
     extends State<ForgotPasswordVerificationPage> {
   final _formKey = GlobalKey<FormState>();
   bool _pinSuccess = false;
+  String _verificationCode = ""; // Store the verification code sent to the email
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-            appBar: AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.orange,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
@@ -79,6 +79,7 @@ class _ForgotPasswordVerificationPageState
                             fieldStyle: FieldStyle.underline,
                             onCompleted: (pin) {
                               setState(() {
+                                _verificationCode = pin;
                                 _pinSuccess = true;
                               });
                             },
@@ -148,14 +149,42 @@ class _ForgotPasswordVerificationPageState
                                 ),
                               ),
                               onPressed: _pinSuccess
-                                  ? () {
-                                      Navigator.of(context)
-                                          .pushAndRemoveUntil(
-                                        MaterialPageRoute(
-                                          builder: (context) => LoginPage(),
-                                        ),
-                                        (Route<dynamic> route) => false,
-                                      );
+                                  ? () async {
+                                      try {
+                                        // Get the current user
+                                        User? user =
+                                            FirebaseAuth.instance.currentUser;
+                                        if (user != null) {
+                                          // Sign in the user with their email and verification code
+                                          AuthCredential credential =
+                                              EmailAuthProvider.credential(
+                                                  email: user.email!,
+                                                  password:
+                                                      _verificationCode);
+                                          await user
+                                              .reauthenticateWithCredential(
+                                                  credential);
+                                          // If reauthentication is successful, navigate to the change password screen
+                                          Navigator.pushReplacement(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ChangePasswordPage(),
+                                            ),
+                                          );
+                                        }
+                                      } catch (e) {
+                                        showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) {
+                                            return ThemeHelper().alartDialog(
+                                              "Error",
+                                              "Invalid verification code.",
+                                              context,
+                                            );
+                                          },
+                                        );
+                                      }
                                     }
                                   : null,
                             ),
@@ -173,3 +202,5 @@ class _ForgotPasswordVerificationPageState
     );
   }
 }
+
+
