@@ -45,10 +45,10 @@ class _RegistrationPageState extends State<RegistrationPage> {
     });
   }
   Future<void> sendWelcomeEmail(String email) async {
-     final smtpServer = gmail("edwardsasha27@gmail.com", "ngegeshi2000");
+    final smtpServer = gmail("edwardsasha27@gmail.com", "ngegeshi2000");
 
     final message = Message()
-     ..from = Address("edwardsasha27@gmail.com", "RetirementManagementSystem")
+    ..from = Address("edwardsasha27@gmail.com", "RetirementManagementSystem")
       ..recipients.add(email)
       ..subject = "Welcome to the System"
       ..text = "Welcome to use the system! Thank you for signing up.";
@@ -215,7 +215,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           if (_formKey.currentState!.validate()) {
                             final email = _emailcontroller.text;
                             final isEmailUsed = await isEmailAlreadyUsed(email);
-
                             if (isEmailUsed) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(
@@ -227,7 +226,6 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                   await _auth.createUserWithEmailAndPassword(
                                       email: email,
                                       password: _passwordcontroller.text);
-
                               await _firestore
                                   .collection('users')
                                   .doc(userCredential.user!.uid)
@@ -240,11 +238,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
                               });
 
                                await sendWelcomeEmail(email); // Send the welcome email to the user
-                              Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
+                                Navigator.push(
+                                    context,
+                                  MaterialPageRoute(
                                   builder: (context) => HomePageUser(),
-                                ),
+                                    ),
+
                               );
                             }
                           }
