@@ -88,10 +88,12 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+         Center(
+              child: Text(
               'Manage your savings plan',
-              style: TextStyle(fontSize: 18.0),
-            ),
+                   style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
             SizedBox(height: 16.0),
             TextField(
               controller: goalController,
@@ -125,13 +127,13 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
                   ),
                 ),
                 onPressed: calculateTotalSavings,
-                child: Text('Calculate Total Savings'),
+                child: Text('Calculate Total Savings', style: TextStyle(),),
               ),
             ),
             SizedBox(height: 16.0),
             Text(
               'Total Savings:',
-              style: TextStyle(fontSize: 18.0),
+              style: TextStyle(fontSize: 18.0, color: Colors.black54),
             ),
             Text(
               totalSavings.toStringAsFixed(2),
@@ -141,13 +143,13 @@ class _SavingsPlanManagementPageState extends State<SavingsPlanManagementPage> {
             if (advisedMonthlyContribution > 0)
               Text(
                 'To meet your goal amount, add ${advisedMonthlyContribution.toStringAsFixed(2)} Tshs per month.',
-                style: TextStyle(fontSize: 18.0),
+                style: TextStyle(fontSize: 18.0, color: Colors.black45),
               ),
-            if (suggestedDuration > 0)
-              Text(
-                'Suggested duration for maximum savings: $suggestedDuration months',
-                style: TextStyle(fontSize: 18.0),
-              ),
+            // if (suggestedDuration > 0)
+            //   Text(
+            //     'Suggested duration for maximum savings: $suggestedDuration months',
+            //     style: TextStyle(fontSize: 18.0),
+            //   ),
           ],
         ),
       ),

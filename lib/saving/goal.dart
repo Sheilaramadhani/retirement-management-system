@@ -26,7 +26,6 @@ class _GoalTrackerScreenState extends State<GoalTrackerScreen> {
   final TextEditingController _goalController = TextEditingController();
   final TextEditingController _targetAmountController = TextEditingController();
   final TextEditingController _progressAmountController = TextEditingController();
-
   late DateTime _completionTime = DateTime.now();
   late DateTime _deadline = DateTime.now();
 
